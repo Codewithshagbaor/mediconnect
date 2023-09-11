@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <!-- MDB icon -->
+    <link rel="icon" href="https://f005.backblazeb2.com/file/CyberMedia/Style/img/med-lg+(1).png" type="image/x-icon" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
+    <!-- MDB -->
+    <link rel="stylesheet" href="https://f005.backblazeb2.com/file/CyberMedia/Style/mdb.min.css" />
+
+    <link href="https://vjs.zencdn.net/8.5.2/video-js.css" rel="stylesheet" />
+    <link href="https://unpkg.com/@videojs/themes@1/dist/city/index.css" rel="stylesheet">
+  </head>
+  <title>Submit Entry</title>
+  </head>
+  <style>
+    button {
+        border-radius: 20px !important; /* Set border-radius as important */
+    }
+    
+    a:hover {
+        color: #DB353A !important; /* Set link hover color as important */
+    }
+    
+    .navbar-light,
+    .navbar-nav,
+    .nav-link {
+        color: #000 !important; /* Set navbar and link color as important */
+    }
+    
+    .navbar-light,
+    .navbar-nav,
+    .nav-link:hover,
+    .navbar-light,
+    .navbar-nav,
+    .nav-link:focus {
+        color: #DB353A !important; /* Set navbar and link hover/focus color as important */
+    }
+    
+    </style>
+  <body>
+    <div id="preview" class="preview">
+      <div style="display: none;"></div>
+      <div>
+        <div data-draggable="true" style="position: relative;" draggable="false" class=""><!----><!---->
+          <section draggable="false" class="overflow-hidden pt-0" data-v-271253ee="">
+            <section class="" style="padding-bottom: 1px;"> <!-- Navbar -->
+              <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-2"> <!-- Container wrapper -->
+                <div class="container-fluid">
+                  <div class="d-flex"> <!-- Toggle button --> <button class="navbar-toggler" type="button"
+                      data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent"
+                      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <i
+                        class="fas fa-bars"></i> </button> <!-- Navbar brand --> <a class="navbar-brand ms-3"
+                      draggable="false"> <img src="https://f005.backblazeb2.com/file/CyberMedia/Style/img/med-lg.png" width="100" aria-controls="#picker-editor"></img> </a>
+                  </div> <!-- Collapsible wrapper -->
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent"> <!-- Left links -->
+                    <ul class="navbar-nav me-auto mb-2 ms-2 ps-1 ms-lg-0 ps-lg-0 mb-lg-0">
+                      <li class="nav-item"> <a class="nav-link" href="/" aria-controls="#picker-editor"
+                          draggable="false"><b>Home</b></a> </li>
+                      <li class="nav-item"> <a class="nav-link" href="/Submission/" aria-controls="#picker-editor"
+                          draggable="false"><b>View Submissions</b></a> </li>
+                        <li class="nav-item">
+                            <a id="vote-entry-link" class="nav-link" aria-controls="#picker-editor" draggable="false"><b>Vote an Entry</b></a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="live-broadcast-link" class="nav-link" draggable="false"><b>Watch Live Broadcast</b></a>
+                        </li>
+                        
+                    </ul> <!-- Left links -->
+                  </div> <!-- Collapsible wrapper --> <!-- Right elements -->
+                  <div class="d-flex align-items-center"><button type="button" class="btn      btn-link px-3 mb-1 me-2"
+                    aria-controls="#picker-editor"> <a href="/entry/">Submit Entry</a></button> <button type="button" class="btn btn-primary mb-1 me-lg-3" id="checkSubmissionButton" style="background-color: #DB353A; border-radius: 20px;">Check Submission</button>
+                  </div>
+              </nav> <!-- Navbar -->
+            </section>
+          </section><!---->
+        </div>
+      </div>
+        {% if current_date > submission_expiry_date %}
+        <div class="upload_form">
+          <h1>Submission Closed</h1>
+          <p>We're sorry, but the submission date has passed, and the page is now closed for submissions.</p>
+        </div>
+
+        <style>
+          .upload_form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 50%;
+            background-color: #fff;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 100px 100px 80px rgba(0, 0, 0, 0.03);
+            margin: 20px auto;
+          }
+
+          .upload_form button {
+            align-self: flex-end;
+          }
+
+          .input,
+          button {
+            border: none;
+            outline: none;
+            width: 100%;
+            padding: 16px 10px;
+            background-color: rgb(247, 243, 243);
+            border-radius: 10px;
+            box-shadow: 12.5px 12.5px 10px rgba(0, 0, 0, 0.015), 100px 100px 80px rgba(0, 0, 0, 0.03);
+          }
+
+          button {
+            margin-top: 12px;
+            background-color: rgb(23, 111, 211);
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: bold;
+          }
+
+          .input:focus {
+            border: 1px solid rgb(23, 111, 211);
+          }
+
+          .title {
+            color: black;
+            font-weight: bold;
+            text-align: center;
+            font-size: 20px;
+            margin-bottom: 4px;
+          }
+
+          #messageContainer {
+            text-align: center;
+            display: none;
+            margin-top: 10px;
+          }
+
+          #loadingSpinner,
+          #successMessage,
+          #errorMessage {
+            display: none;
+            margin-bottom: 10px;
+            font-weight: bold;
+          }
+
+          #loadingSpinner::before {
+            content: "🔄 ";
+          }
+
+          #successMessage::before {
+            content: "✅ ";
+            color: green;
+          }
+
+          #errorMessage::before {
+            content: "❌ ";
+            color: red;
+          }
+        </style>
+        {% else %}
+        <form id="uploadForm" enctype="multipart/form-data" class="upload_form">
+          <span class="title">Submit Entry</span>
+          <span style="text-align: center;"><i>Submission is open till Twenty Fifth Spetember 2023</span></i>
+          {% csrf_token %}
+          <label for="title">Name:</label>
+          <input type="text" id="name" name="name" required class="input">
+          <label for="title">Phone Number:</label>
+          <input type="text" id="phone_number" name="phone_number" class="input">
+          <label for="state_of_origin">State of Origin:</label>
+          <select id="state_of_origin" name="state_of_origin" required class="input">
+            <option value="" disabled selected>Select your state</option>
+            {% for state_name in state_of_orgin %}
+            <option value="{{ state_name.0 }}">{{ state_name.1 }}</option>
+            {% endfor %}
+          </select>
+          <label for="title">Age Range:</label>
+          <input type="text" id="age_range" name="age_range" required class="input">
+          <label for="title">Educational Institution:</label>
+          <input type="text" id="educational_institution" name="educational_institution" required class="input">
+          <label for="title">Current Level:</label>
+          <input type="text" id="current_level" name="current_level" class="input">
+          <label for="state_of_origin">Document Type:</label>
+          <select id="document_type" name="document_type" required class="input">
+
+            <option value="" disabled selected>Select type</option>
+            {% for type in document_type %}
+            <option value="{{ type.0 }}">{{ type.1 }}</option>
+            {% endfor %}
+          </select>
+          <label class="custum-file-upload" for="file">
+            <div class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="" viewBox="0 0 24 24">
+                <g stroke-width="0" id="SVGRepo_bgCarrier"></g>
+                <g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path fill=""
+                    d="M10 1C9.73478 1 9.48043 1.10536 9.29289 1.29289L3.29289 7.29289C3.10536 7.48043 3 7.73478 3 8V20C3 21.6569 4.34315 23 6 23H7C7.55228 23 8 22.5523 8 22C8 21.4477 7.55228 21 7 21H6C5.44772 21 5 20.5523 5 20V9H10C10.5523 9 11 8.55228 11 8V3H18C18.5523 3 19 3.44772 19 4V9C19 9.55228 19.4477 10 20 10C20.5523 10 21 9.55228 21 9V4C21 2.34315 19.6569 1 18 1H10ZM9 7H6.41421L9 4.41421V7ZM14 15.5C14 14.1193 15.1193 13 16.5 13C17.8807 13 19 14.1193 19 15.5V16V17H20C21.1046 17 22 17.8954 22 19C22 20.1046 21.1046 21 20 21H13C11.8954 21 11 20.1046 11 19C11 17.8954 11.8954 17 13 17H14V16V15.5ZM16.5 11C14.142 11 12.2076 12.8136 12.0156 15.122C10.2825 15.5606 9 17.1305 9 19C9 21.2091 10.7909 23 13 23H20C22.2091 23 24 21.2091 24 19C24 17.1305 22.7175 15.5606 20.9844 15.122C20.7924 12.8136 18.858 11 16.5 11Z"
+                    clip-rule="evenodd" fill-rule="evenodd"></path>
+                </g>
+              </svg>
+            </div>
+            <div class="text">
+              <span>Click to upload image</span>
+            </div>
+            <input type="file" id="file" name="uploaded_file" accept=".pdf,.doc,.docx">
+            <p id="file-name"></p>
+
+        <script>
+          // Get the input element
+          const fileInput = document.getElementById('file');
+          
+          // Get the paragraph element to display the file name
+          const fileNameDisplay = document.getElementById('file-name');
+
+          // Add an event listener to the input element
+          fileInput.addEventListener('change', function() {
+            // Check if a file is selected
+            if (fileInput.files.length > 0) {
+              // Display the name of the selected file
+              fileNameDisplay.textContent = 'Selected file: ' + fileInput.files[0].name;
+            } else {
+              // No file selected, clear the display
+              fileNameDisplay.textContent = '';
+            }
+          });
+        </script>
+          </label>
+          <div id="messageContainer" style="display: none;">
+            <div id="loadingSpinner" style="display: none;">Uploading file...</div>
+            <div id="successMessage" style="display: none;">File uploaded successfully.</div>
+            <div id="errorMessage" style="display: none;">Hang tight, we are uploading...</div>
+          </div>
+          <button type="submit">Upload</button>
+        </form>
+        <div id="checkSubmissionModal" class="modal">
+          <div class="modal-content">
+            <span id="closeCheckSubmissionModal" class="close">&times;</span>
+            <h2>Check Submission</h2>
+            <form id="checkSubmissionForm">
+              {% csrf_token %}
+              <label for="auto_id">Enter Your ID:</label>
+              <input type="text" id="auto_id" name="auto_id" required>
+              <br>
+              <button type="submit">Check</button>
+            </form>
+          </div>
+        </div>
+        
+        <style>
+          .custum-file-upload {
+            height: 200px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: space-between;
+            gap: 20px;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #cacaca;
+            background-color: rgba(255, 255, 255, 1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0px 48px 35px -48px rgba(0, 0, 0, 0.1);
+          }
+
+          .custum-file-upload .icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+          .custum-file-upload .icon svg {
+            height: 80px;
+            fill: rgba(75, 85, 99, 1);
+          }
+
+          .custum-file-upload .text {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+          .custum-file-upload .text span {
+            font-weight: 400;
+            color: rgba(75, 85, 99, 1);
+          }
+
+          .custum-file-upload input {
+            display: none;
+          }
+        </style>
+        <style>
+          .upload_form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 50%;
+            background-color: #fff;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 0.5em 1.5em -0.5em #4d36d0be;
+            margin: 20px auto;
+          }
+
+          .upload_form button {
+            align-self: flex-end;
+          }
+
+          .input,
+          button {
+            border: none;
+            outline: none;
+            width: 100%;
+            padding: 16px 10px;
+            background-color: rgb(247, 243, 243);
+            border-radius: 10px;
+            box-shadow: 12.5px 12.5px 10px rgba(0, 0, 0, 0.015), 100px 100px 80px rgba(0, 0, 0, 0.03);
+          }
+                @media screen and (max-width: 768px) {
+
+      /* Adjust video player styles */
+      .upload_form {
+            width: 100%;
+          }
+      }
+          button {
+            margin-top: 12px;
+            background-color: rgb(23, 111, 211);
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: bold;
+          }
+
+          .input:focus {
+            border: 1px solid rgb(23, 111, 211);
+          }
+
+          .title {
+            color: black;
+            font-weight: bold;
+            text-align: center;
+            font-size: 20px;
+            margin-bottom: 4px;
+          }
+
+          #messageContainer {
+            text-align: center;
+            display: none;
+            margin-top: 10px;
+          }
+
+          #loadingSpinner,
+          #successMessage,
+          #errorMessage {
+            display: none;
+            margin-bottom: 10px;
+            font-weight: bold;
+          }
+
+          #loadingSpinner::before {
+            content: "🔄 ";
+          }
+
+          #successMessage::before {
+            content: "✅ ";
+            color: green;
+          }
+
+          #errorMessage::before {
+            content: "❌ ";
+            color: red;
+          }
+        </style>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script type="text/javascript" src="https://f005.backblazeb2.com/file/CyberMedia/Style/mdb.min.js"></script>
+  <script>
+    // Function to display the message
+    function showMessage(message) {
+        alert(message);
+    }
+
+    // Add a click event listener to the "Vote an Entry" link
+    document.getElementById('vote-entry-link').addEventListener('click', function () {
+        showMessage("Voting is not available until October.");
+    });
+
+    // Add a click event listener to the "Watch Live Broadcast" link
+    document.getElementById('live-broadcast-link').addEventListener('click', function () {
+        showMessage("Live broadcast is not available until October.");
+    });
+</script>
+  <script>
+    $(document).ready(function () {
+      var uploadTimeout;
+      var messageContainer = $('#messageContainer');
+      var loadingSpinner = $('#loadingSpinner');
+      var successMessage = $('#successMessage');
+      var errorMessage = $('#errorMessage');
+
+      var randomMessages = [
+        'Just a moment, we are uploading...',
+        'Hold on, the upload is in progress...',
+        'Your file is making its way to the server...',
+        'We are preparing your upload, hang tight...'
+      ];
+
+      function getRandomMessage() {
+        var randomIndex = Math.floor(Math.random() * randomMessages.length);
+        return randomMessages[randomIndex];
+      }
+
+      function updateRandomMessage() {
+        loadingSpinner.html(getRandomMessage());
+      }
+
+      function checkInternetConnection(callback) {
+        var image = new Image();
+        image.onload = function () {
+          callback(true);
+        };
+        image.onerror = function () {
+          callback(false);
+        };
+        image.src = 'https://www.freecodecamp.org/news/content/images/size/w2000/2020/07/js_online_offline.png'; // Use an actual URL here
+      }
+
+      $('#uploadForm').submit(function (event) {
+        event.preventDefault();
+
+        var formData = new FormData(this);
+
+        checkInternetConnection(function (isConnected) {
+          if (!isConnected) {
+            errorMessage.html('No internet connection. Please check your network.');
+            errorMessage.show();
+            return;
+          }
+
+          messageContainer.show();
+          loadingSpinner.show();
+          successMessage.hide();
+          errorMessage.hide();
+
+          // Update random message every second
+          uploadTimeout = setInterval(updateRandomMessage, 5000);
+
+          $.ajax({
+            type: 'POST',
+            url: '{% url "upload_file" %}',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+              clearInterval(uploadTimeout);
+              loadingSpinner.hide();
+              successMessage.html(data.message);
+              successMessage.show();
+              $('#uploadForm')[0].reset();
+              console.log(data);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+              clearInterval(uploadTimeout);
+              loadingSpinner.hide();
+              if (textStatus === 'timeout') {
+                errorMessage.html('Upload timeout. Please check your connection.');
+              } else {
+                errorMessage.html('An error occurred. Please try again.');
+              }
+              errorMessage.show();
+            }
+          });
+        });
+      });
+    });
+  </script>
+<script>
+  // Function to show the pop-up form
+  function showCheckSubmissionForm() {
+    const modal = document.getElementById("checkSubmissionModal");
+    modal.style.display = "block";
+  }
+
+  // Function to hide the pop-up form
+  function hideCheckSubmissionForm() {
+    const modal = document.getElementById("checkSubmissionModal");
+    modal.style.display = "none";
+  }
+
+  // Event listener for the "Check Submission" button click
+  const checkSubmissionButton = document.getElementById("checkSubmissionButton");
+  checkSubmissionButton.addEventListener("click", showCheckSubmissionForm);
+
+  // Event listener for the close button in the pop-up form
+  const closeModalButton = document.getElementById("closeCheckSubmissionModal");
+  closeModalButton.addEventListener("click", hideCheckSubmissionForm);
+</script>
+<script>
+  // ... (Code for showing/hiding the form)
+
+  // Event listener for the form submission
+  const checkSubmissionForm = document.getElementById("checkSubmissionForm");
+  checkSubmissionForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const formData = new FormData(checkSubmissionForm);
+
+    // Send an AJAX request to the Django view
+    fetch("{% url 'check_submission' %}", {
+      method: "POST",
+      body: formData,
+      headers: {
+        "X-CSRFToken": "{{ csrf_token }}",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+    if ('error' in data) {
+        // Display an error message if submission not found
+        alert(data.error);
+    } else if ('redirect_url' in data) {
+        // Redirect the user to the entry page
+        window.location.href = data.redirect_url;
+    }
+
+    // Hide the pop-up form
+    hideCheckSubmissionForm();
+})
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  });
+</script>
+<style>
+.modal {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.7);
+            }
+
+            .modal-content {
+                background-color: #fff;
+                margin: 15% auto;
+                padding: 20px;
+                width: 80%;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+                border-radius: 5px;
+                position: relative;
+            }
+
+            .close {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                font-size: 20px;
+                cursor: pointer;
+            }
+
+            /* Style for the form elements */
+
+            label {
+                font-weight: bold;
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            input[type="text"] {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 15px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+
+            button[type="submit"] {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 50%;
+    display: block; /* Add this line */
+    margin: 0 auto; /* Add this line */
+}
+
+            button[type="submit"]:hover {
+                background-color: #0056b3;
+            }
+
+  .centered-form-container {
+    background-color: #fff;
+    padding: 20px;
+    width: 80%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    position: relative;
+  }
+
+  /* Rest of your modal and form styles remain unchanged */
+</style>
+
+  {% endif %}
+
+</html>

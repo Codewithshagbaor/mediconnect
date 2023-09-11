@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>World Pharmacy Day - MyMediconnect</title>
+    <!-- MDB icon -->
+    <link rel="icon" href="https://f005.backblazeb2.com/file/CyberMedia/Style/img/med-lg+(1).png" type="image/x-icon" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
+    <!-- MDB -->
+    <link rel="stylesheet" href="https://f005.backblazeb2.com/file/CyberMedia/Style/mdb.min.css" />
+
+    <link href="https://vjs.zencdn.net/8.5.2/video-js.css" rel="stylesheet" />
+    <link href="https://unpkg.com/@videojs/themes@1/dist/city/index.css" rel="stylesheet">
+  </head>
+<style>
+button {
+    border-radius: 20px !important; /* Set border-radius as important */
+}
+
+a:hover {
+    color: #DB353A !important; /* Set link hover color as important */
+}
+
+.navbar-light,
+.navbar-nav,
+.nav-link {
+    color: #000 !important; /* Set navbar and link color as important */
+}
+
+.navbar-light,
+.navbar-nav,
+.nav-link:hover,
+.navbar-light,
+.navbar-nav,
+.nav-link:focus {
+    color: #DB353A !important; /* Set navbar and link hover/focus color as important */
+}
+
+</style>
+  <body>
+    <!-- Start your project here-->
+
+    <div id="preview" class="preview">
+      <div style="display: none;"></div>
+      <div>
+        <div data-draggable="true" style="position: relative;" draggable="false" class=""><!----><!---->
+            <section draggable="false" class="overflow-hidden pt-0" data-v-271253ee="">
+                <section class="" style="padding-bottom: 1px;"> <!-- Navbar -->
+                  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-2"> <!-- Container wrapper -->
+                    <div class="container-fluid">
+                      <div class="d-flex"> <!-- Toggle button --> <button class="navbar-toggler" type="button"
+                          data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent"
+                          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <i
+                            class="fas fa-bars"></i> </button> <!-- Navbar brand --> <a class="navbar-brand ms-3"
+                          draggable="false"> <img src="https://f005.backblazeb2.com/file/CyberMedia/Style/img/med-lg.png" width="100" aria-controls="#picker-editor"></img> </a>
+                      </div> <!-- Collapsible wrapper -->
+                      <div class="collapse navbar-collapse" id="navbarSupportedContent"> <!-- Left links -->
+                        <ul class="navbar-nav me-auto mb-2 ms-2 ps-1 ms-lg-0 ps-lg-0 mb-lg-0">
+                          <li class="nav-item"> <a class="nav-link" href="/" aria-controls="#picker-editor"
+                              draggable="false"><b>Home</b></a> </li>
+                          <li class="nav-item"> <a class="nav-link" href="/Submission/" aria-controls="#picker-editor"
+                              draggable="false"><b>View Submissions</b></a> </li>
+                              <li class="nav-item">
+                                <a id="vote-entry-link" class="nav-link" aria-controls="#picker-editor" draggable="false"><b>Vote an Entry</b></a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="live-broadcast-link" class="nav-link" draggable="false"><b>Watch Live Broadcast</b></a>
+                            </li>
+                            
+                        </ul> <!-- Left links -->
+                      </div> <!-- Collapsible wrapper --> <!-- Right elements -->
+                      <div class="d-flex align-items-center"><button type="button" class="btn      btn-link px-3 mb-1 me-2"
+                        aria-controls="#picker-editor"> <a href="/entry/">Submit Entry</a></button> <button type="button" class="btn btn-primary mb-1 me-lg-3" id="checkSubmissionButton" style="background-color: #DB353A; border-radius: 20px;">Check Submission</button>
+                      </div>
+                  </nav> <!-- Navbar -->
+                </section>
+              </section><!---->
+          <section draggable="false" class="overflow-hidden pt-0" data-v-271253ee="">
+            <section class="mb-10 background-radial-gradient overflow-hidden">
+              <style>
+                .background-radial-gradient {
+                  background-color: hsl(218, 41%, 15%);
+                  background-image: radial-gradient(650px circle at 0% 0%, hsl(218, 41%, 35%) 15%, hsl(218, 41%, 30%) 35%, hsl(218, 41%, 20%) 75%, hsl(218, 41%, 19%) 80%, transparent 100%), radial-gradient(1250px circle at 100% 100%, hsl(218, 41%, 45%) 15%, hsl(218, 41%, 30%) 35%, hsl(218, 41%, 20%) 75%, hsl(218, 41%, 19%) 80%, transparent 100%);
+                }
+
+                #radius-shape-1 {
+                  height: 220px;
+                  width: 220px;
+                  top: -60px;
+                  left: -130px;
+                  background: radial-gradient(#44006b, #ad1fff);
+                  overflow: hidden;
+                }
+
+                #radius-shape-2 {
+                  border-radius: 38% 62% 63% 37% / 70% 33% 67% 30%;
+                  bottom: -60px;
+                  right: -110px;
+                  width: 300px;
+                  height: 300px;
+                  background: radial-gradient(#44006b, #ad1fff);
+                  overflow: hidden;
+                }
+
+                .bg-glass {
+                  background-color: hsla(0, 0%, 100%, 0.9) !important;
+                  backdrop-filter: saturate(200%) blur(25px);
+                }
+
+              </style>
+              <div class="container px-4 py-5 px-md-5 text-center text-lg-start">
+                <div class="row gx-lg-5 align-items-center mb-5">
+                  <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
+                    <h1 class="my-5 display-3 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)"> <span>Happy World Pharmacy Day!!</span> <br> <span style="color: hsl(218, 81%, 75%)">You Can Enjoy Limitless Possibilties On Mediconnect</span> </h1>
+                    <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">Shine the light in any direction of your choice: People, Institution, Cities, Nations and Continents we have got you covered </p>
+                  </div>
+                  <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
+                    <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
+                    <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
+                    <div class="card bg-glass">
+                      <div class="card-body px-4 py-5 px-md-5">
+                        <video id="videoPlayer" class="video-js" controls preload="auto" width="800" height="400" data-setup="{}">
+                            <source src="https://f005.backblazeb2.com/file/CyberMedia/TV%E3%82%A2%E3%83%8B%E3%83%A1%E3%80%8E%E5%91%AA%E8%A1%93%E5%BB%BB%E6%88%A6%E3%80%8F%E3%80%8C%E6%B8%8B%E8%B0%B7%E4%BA%8B%E5%A4%89%E3%80%8D%E7%AC%AC2%E6%9C%9FPV%E7%AC%AC3%E5%BC%BE%EF%BD%9COP%E3%83%86%E3%83%BC%E3%83%9E%EF%BC%9AKing+Gnu%E3%80%8CSPECIALZ%E3%80%8D%EF%BD%9C%E6%AF%8E%E9%80%B1%E6%9C%A8%E6%9B%9C%E5%A4%9C11%E6%99%8256%E5%88%86%EF%BD%9EMBS_TBS%E7%B3%BB%E5%88%97%E5%85%A8%E5%9B%BD28%E5%B1%80%E3%81%AB%E3%81%A6%E6%94%BE%E9%80%81%E4%B8%AD!!.mp4" type="video/mp4" />
+                            <p class="vjs-no-js">
+                              To view this video please enable JavaScript, and consider upgrading to a
+                              web browser that
+                              <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                            </p>
+                          </video>
+                      </div>
+                      <style>
+                          .video-js {
+  max-width: 100%; /* Ensure the video doesn't exceed the container's width */
+}
+
+.video {
+  width: 100%; /* Set the video width to 100% of its container */
+}
+                      </style>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </section><!---->
+        </div>
+        <div id="checkSubmissionModal" class="modal">
+          <div class="modal-content">
+            <span id="closeCheckSubmissionModal" class="close">&times;</span>
+            <h2>Check Submission</h2>
+            <form id="checkSubmissionForm">
+              {% csrf_token %}
+              <label for="auto_id">Enter Your ID:</label>
+              <input type="text" id="auto_id" name="auto_id" required>
+              <br>
+              <button type="submit">Check</button>
+            </form>
+          </div>
+        </div>
+<script>
+  // Function to show the pop-up form
+  function showCheckSubmissionForm() {
+    const modal = document.getElementById("checkSubmissionModal");
+    modal.style.display = "block";
+  }
+
+  // Function to hide the pop-up form
+  function hideCheckSubmissionForm() {
+    const modal = document.getElementById("checkSubmissionModal");
+    modal.style.display = "none";
+  }
+
+  // Event listener for the "Check Submission" button click0000000000000000000000000000000000000000000000000000000000
+  const checkSubmissionButton = document.getElementById("checkSubmissionButton");
+  checkSubmissionButton.addEventListener("click", showCheckSubmissionForm);
+
+  // Event listener for the close button in the pop-up form
+  const closeModalButton = document.getElementById("closeCheckSubmissionModal");
+  closeModalButton.addEventListener("click", hideCheckSubmissionForm);
+</script>
+<script>
+  // ... (Code for showing/hiding the form)
+
+  // Event listener for the form submission
+  const checkSubmissionForm = document.getElementById("checkSubmissionForm");
+  checkSubmissionForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const formData = new FormData(checkSubmissionForm);
+
+    // Send an AJAX request to the Django view
+    fetch("{% url 'check_submission' %}", {
+      method: "POST",
+      body: formData,
+      headers: {
+        "X-CSRFToken": "{{ csrf_token }}",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+    if ('error' in data) {
+        // Display an error message if submission not found
+        alert(data.error);
+    } else if ('redirect_url' in data) {
+        // Redirect the user to the entry page
+        window.location.href = data.redirect_url;
+    }
+
+    // Hide the pop-up form
+    hideCheckSubmissionForm();
+})
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  });
+</script>
+<style>
+.modal {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.7);
+            }
+
+            .modal-content {
+                background-color: #fff;
+                margin: 15% auto;
+                padding: 20px;
+                width: 80%;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+                border-radius: 5px;
+                position: relative;
+            }
+
+            .close {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                font-size: 20px;
+                cursor: pointer;
+            }
+
+            /* Style for the form elements */
+
+            label {
+                font-weight: bold;
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            input[type="text"] {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 15px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+
+            button[type="submit"] {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 50%;
+    display: block; /* Add this line */
+    margin: 0 auto; /* Add this line */
+}
+
+
+            button[type="submit"]:hover {
+                background-color: #0056b3;
+            }
+  .centered-form-container {
+    background-color: #fff;
+    padding: 20px;
+    width: 80%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    position: relative;
+  }
+
+  /* Rest of your modal and form styles remain unchanged */
+</style>
+        <div data-draggable="true" class="" style="position: relative;"><!----><!---->
+            <section draggable="false" class="container pt-5" data-v-271253ee="">
+              <section class="mb-10 text-center">
+                <div class="row d-flex justify-content-center">
+                  <div class="col-lg-8">
+                    <h2 class="mb-4 display-3 fw-bold ls-tight"> <span>Are you ready</span> <br> <span
+                        class="text-primary">for the 2023 World Pharmacy Day Essay Competition?</span> </h2>
+                    <p class="text-muted lead"><b style="color: purple;">Evans Baroque</b> is inviting all pharmacy students nation wide to participate in an Essay Competiton on: <b>Pharmacy strengthing health systems</b> </p>
+                    <span style="text-align: center;"><i>Submission is open till Twenty Fifth Spetember 2023</span></i><br><br><br><br>
+                      <button type="button" style="background-color: #fff; border-radius: 20px;" class="btn btn-primary mb-1 me-lg-3" id="checkSubmissionButton" style="text-decoration: none;"><a href="/entry/">Submit an Essay</a></button>
+                  </div>
+                </div>
+              </section>
+            </section><!---->
+          </div>
+        <div data-draggable="true" class="" style="position: relative;" draggable="false">
+          <section class="container pt-5 slider-container" data-v-271253ee="">
+            <section class="mb-10 text-center">
+               <h2 class="fw-bold mb-5"><span>Winners</span> <u class="text-primary">category</u></h2>
+            <div class="slider">
+                <div class="slide">
+                    <div class="col-xl-3 col-md-4 mb-5">
+                        <img src="https://f005.backblazeb2.com/file/CyberMedia/Style/img/sponsor.jpg" class="rounded-circle shadow-4 mb-3" alt="" style="max-width: 100px" draggable="false">
+                        <p class="fw-bold mb-1">Winner 1</p>
+                        <p class="text-muted mb-0">₦500,000.00</p>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-4 mb-5"> <img src="https://f005.backblazeb2.com/file/CyberMedia/Style/img/sponsor.jpg"
+                  class="rounded-circle shadow-4 mb-3" alt="" style="max-width: 100px" aria-controls="#picker-editor"
+                  draggable="false">
+                  <p class="fw-bold mb-1">Winner 2</p>
+                  <p class="text-muted mb-0">₦300,000.00</p>
+              </div>
+              <div class="col-xl-3 col-md-4 mb-5"> <img src="https://f005.backblazeb2.com/file/CyberMedia/Style/img/sponsor.jpg"
+                  class="rounded-circle shadow-4 mb-3" alt="" style="max-width: 100px" aria-controls="#picker-editor"
+                  draggable="false">
+                  <p class="fw-bold mb-1">Winner 3</p>
+                  <p class="text-muted mb-0">₦200,000.00</p>
+              </div>
+              <div class="col-xl-3 col-md-4 mb-5"> <img src="https://f005.backblazeb2.com/file/CyberMedia/Style/img/sponsor.jpg"
+                class="rounded-circle shadow-4 mb-3" alt="" style="max-width: 100px" aria-controls="#picker-editor"
+                draggable="false">
+                <p class="fw-bold mb-1">Top 10 Regconition</p>
+            </div>
+                <!-- Add more slides here -->
+            </div>
+            </section>
+           
+        </section>
+        <div class="footer-contact">
+          <div class="footer-contact-info">
+            <span class="footer-icon">
+              <svg fill="none" height="24" width="24" xmlns="http://www.w3.org/2000/svg"><g stroke="currentColor" stroke-width="2"><path d="M8 5h8c1.442 0 2.424.002 3.159.1.706.096 1.033.263 1.255.486.223.222.39.55.485 1.255.099.735.101 1.717.101 3.159v4c0 1.443-.002 2.424-.1 3.159-.096.706-.263 1.033-.486 1.255-.222.223-.55.39-1.255.485-.735.099-1.716.101-3.159.101H8c-1.442 0-2.424-.002-3.159-.1-.706-.096-1.033-.263-1.255-.486-.223-.222-.39-.55-.485-1.255C3.002 16.424 3 15.443 3 14v-4c0-1.442.002-2.424.1-3.159.096-.706.263-1.033.486-1.255.222-.223.55-.39 1.255-.485C5.576 5.002 6.558 5 8 5z"/><path d="M4 6l5.6 4.2c1.156.867 1.733 1.3 2.4 1.3s1.244-.433 2.4-1.3L20 6"/></g></svg>
+            </span>
+            <span class="contact-text">
+              <a href="mailto:mymediconnect.co@gmail.com">mymediconnect.co@gmail.com</a>
+            </span>
+          </div>
+          <div class="footer-contact-info">
+            <span class="footer-icon">
+              <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m10.9745053 6.25438069c.5859618.64953263.4001764 1.385384-.1179275 2.08359126-.1228372.16553787-.2644257.32864255-.4354337.50837031-.0820816.08626692-.146085.15114518-.2799611.28515282-.30404185.30434075-.55962787.56006764-.76677212.76719476-.10045042.10044211.58537169 1.47091256 1.91636572 2.80321496 1.330271 1.3315785 2.7006665 2.0178717 2.8015897 1.9168928l.7662433-.7666656c.4219641-.4223788.6454259-.6261656.9524941-.8276199.6383619-.4188019 1.3346487-.5326098 1.9218938-.0075046 1.917392 1.3715279 3.002421 2.2131696 3.5339823 2.7654875 1.0368032 1.0772885.9009239 2.7355505.0058881 3.6815575-.310367.328042-.7038975.7217894-1.1686927 1.1698678-2.8115426 2.8130924-8.7452087 1.1011478-13.29272087-3.4508344-4.54854328-4.5530143-6.25957423-10.48724751-3.45392351-13.29440469.50369491-.51161078.66976776-.67759921 1.16032384-1.1609619.91332516-.89993238 2.64809496-1.04084325 3.70265375.00089019.55470178.54795559 1.43904335 1.68579325 2.75399689 3.52577119zm5.2976912 9.01181231-.7663957.7668182c-1.3027098 1.3034278-3.5212556.1923815-5.6287635-1.917198-2.10895367-2.1110266-3.21876196-4.32874376-1.91561294-5.63178499.20686559-.20684849.46221007-.46233371.76601933-.76644159.12257971-.1227002.17865083-.17953772.24595284-.25027148.09169673-.09637236.16704687-.18101436.22737622-.25591314-1.16536776-1.62334105-1.95756624-2.63769308-2.38463315-3.05956608-.22055435-.21787201-.7144149-.17775699-.8957207.00089018-.48355249.4764618-.64249468.63532319-1.14415849 1.14483065-1.80431291 1.80530743-.42305033 6.59583115 3.44893327 10.47162075 3.87077012 3.8745749 8.66057222 5.2564989 10.47861602 3.4376906.4575653-.4413383.8304305-.814409 1.1174257-1.1177481.2073819-.2191921.2444429-.6714816.0058881-.9193516-.3973347-.4128499-1.370103-1.1713041-3.0497615-2.3775058-.1224316.0985451-.2729386.2414754-.5051655.4739304z" fill-rule="evenodd"/></svg>
+            </span><br>
+            <span class="contact-text">
+              <a href="tel:+2347065813394">+2347065813394</a>, <a href="tel:+2348163148056">+2348163148056</a>
+            </span>
+          </div>
+        </div>
+        
+        </div>
+      </div>
+    </div>
+<style>
+  /* Style for the footer contact section */
+.footer-contact {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+}
+
+/* Style for the footer icon */
+.footer-icon {
+  width: 30px; /* Adjust the size of the icon */
+  height: 30px; /* Adjust the size of the icon */
+  margin-right: 10px; /* Add some spacing between the icon and text */
+}
+
+/* Style for the contact text */
+.contact-text {
+  font-size: 16px;
+}
+
+/* Style for the links */
+.contact-text a {
+  text-decoration: none;
+  color: #333; /* Adjust the text color */
+}
+
+/* Style for the links on hover */
+.contact-text a:hover {
+  color: #007BFF; /* Adjust the hover color */
+}
+
+</style>
+    <!-- End your project here-->
+
+    <!-- MDB -->
+    <script type="text/javascript" src="https://f005.backblazeb2.com/file/CyberMedia/Style/mdb.min.js"></script>
+    <script>
+      // Function to display the message
+      function showMessage(message) {
+          alert(message);
+      }
+  
+      // Add a click event listener to the "Vote an Entry" link
+      document.getElementById('vote-entry-link').addEventListener('click', function () {
+          showMessage("Voting is not available until October.");
+      });
+  
+      // Add a click event listener to the "Watch Live Broadcast" link
+      document.getElementById('live-broadcast-link').addEventListener('click', function () {
+          showMessage("Live broadcast is not available until October.");
+      });
+  </script>
+  <style>
+    /* Add your existing styles here */
+
+/* Hide the overflow to create the sliding effect */
+.slider-container {
+    overflow: hidden;
+}
+
+.slider {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.slide {
+    flex: 0 0 25%; /* Adjust the width of each slide as needed */
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+@media screen and (max-width: 768px) {
+
+  /* Adjust video player styles */
+  .video-js {
+  max-width: 100%; /* Ensure the video doesn't exceed the container's width */
+}
+
+.video {
+  width: 100%; /* Set the video width to 100% of its container */
+}
+
+}
+.social-media-links {
+  width: 250px;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 50px;
+  margin-right: auto;
+  margin-bottom: 0px;
+  margin-left: auto;
+}
+/* Add styles for navigation buttons if needed */
+
+
+  </style>
+    <!-- Custom scripts -->
+    <script src="https://vjs.zencdn.net/8.5.2/video.min.js"></script>
+
+    <script type="text/javascript">
+      // Function to auto-slide the winner section
+function autoSlide() {
+    const slider = document.querySelector('.slider');
+    const firstSlide = document.querySelector('.slide');
+
+    // Clone the first slide and append it to the end
+    const cloneSlide = firstSlide.cloneNode(true);
+    slider.appendChild(cloneSlide);
+
+    let position = 0;
+    const slideWidth = firstSlide.offsetWidth;
+
+    // Function to move the slider
+    function moveSlider() {
+        position -= slideWidth;
+        slider.style.transform = `translateX(${position}px)`;
+    }
+
+    // Auto-slide every 3 seconds (adjust the timing as needed)
+    setInterval(() => {
+        moveSlider();
+        // Check if we reached the last slide
+        if (position === -slideWidth * (slider.children.length - 1)) {
+            // Reset to the beginning
+            position = 0;
+            slider.style.transform = `translateX(${position}px)`;
+        }
+    }, 3000); // Change slide every 3 seconds
+}
+
+// Call the autoSlide function when the page loads
+window.addEventListener('load', autoSlide);
+
+    </script>
+  </body>
+
+</html>

@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>View Submission and Grading</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="https://f005.backblazeb2.com/file/CyberMedia/Style/img/med-lg+(1).png" type="image/x-icon" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <style type="text/css">
+            body {
+                background: #f3f3f3;
+                margin-top: 20px;
+                color: #616f80;
+                font-family: 'Oswald', Oswald;
+            }
+
+            .btn {
+                background-color: #007BFF;
+                /* Change the button background color */
+                color: #fff;
+                /* Change the button text color */
+                border-radius: 5px;
+                /* Add rounded corners */
+            }
+
+            .btn:hover {
+                background-color: #0056b3;
+                /* Darker shade on hover */
+            }
+            button {
+        border-radius: 20px !important; /* Set border-radius as important */
+    }
+            .card {
+                border: 1px solid #ddd;
+                /* Add a border */
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+                /* Add a box shadow */
+                margin-bottom: 20px;
+                /* Adjust spacing */
+            }
+
+            input[type="text"],
+            input[type="number"] {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                font-size: 16px;
+            }
+
+            label {
+                font-weight: bold;
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            .card {
+                border: none;
+                margin-bottom: 24px;
+                -webkit-box-shadow: 0 0 13px 0 rgba(236, 236, 241, .44);
+                box-shadow: 0 0 13px 0 rgba(236, 236, 241, .44);
+            }
+
+            .avatar-xs {
+                height: 2.3rem;
+                width: 2.3rem;
+            }
+
+            .cssbuttons-io-button {
+                display: flex;
+                align-items: center;
+                font-family: inherit;
+                font-weight: 500;
+                font-size: 17px;
+                padding: 0.8em 1.5em 0.8em 1.2em;
+                color: white;
+                background: #ad5389;
+                background: linear-gradient(0deg, rgba(77, 54, 208, 1) 0%, rgba(132, 116, 254, 1) 100%);
+                border: none;
+                box-shadow: 0 0.7em 1.5em -0.5em #4d36d0be;
+                letter-spacing: 0.05em;
+                border-radius: 20em;
+            }
+
+            .cssbuttons-io-button svg {
+                margin-right: 8px;
+            }
+
+            .cssbuttons-io-button:hover {
+                box-shadow: 0 0.5em 1.5em -0.5em #4d36d0be;
+            }
+
+            .cssbuttons-io-button:active {
+                box-shadow: 0 0.3em 1em -0.5em #4d36d0be;
+            }
+
+            .button-container {
+                text-align: center;
+                margin-top: 10px;
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-3 col-md-6">
+                    <div class="card bg-pattern">
+                        <div class="card-body">
+                            <div class="float-right">
+                                <i class="fa fa-archive text-primary h4 ml-3"></i>
+                            </div>
+                            <h5 class="font-size-20 mt-0 pt-1">{{submissions_count}}</h5>
+                            <p class="text-muted mb-0">Total Entry</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                    <div class="card bg-pattern">
+                        <div class="card-body">
+                            <div class="float-right">
+                                <i class="fa fa-th text-primary h4 ml-3"></i>
+                            </div>
+                            <h5 class="font-size-20 mt-0 pt-1">{{judges}}</h5>
+                            <p class="text-muted mb-0">Judges</p>
+                        </div>
+                    </div>
+                </div>
+                {% if request.user.is_authenticated and request.user.id == 1 %}
+                <div class="col-xl-3 col-md-6">
+                    <div class="card bg-pattern">
+                        <button class="create-button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10" />
+                                <line x1="12" y1="8" x2="12" y2="16" />
+                                <line x1="8" y1="12" x2="16" y2="12" />
+                            </svg>
+
+                            Add Judge
+                        </button>
+                    </div>
+                </div>
+                {% endif %}
+                <div class="col-xl-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <form method="GET" action="{% url 'admin_dashboard' %}">
+                                <div class="form-group mb-0">
+                                    <label>Search by ID</label>
+                                    <div class="input-group mb-0">
+                                        <input type="text" name="q" class="form-control" placeholder="Search by ID..."
+                                            aria-describedby="project-search-addon" />
+                                        <div class="input-group-append">
+                                            <button class="btn btn-danger" id="project-search-addon"><i
+                                                    class="fa fa-search search-icon font-12"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <h1 class="my-4">{{ submission.educational_institution }}
+                <small>Entry</small>
+            </h1>
+
+            <!-- Portfolio Item Row -->
+            <div class="row">
+
+                <div class="col-md-8">
+                    {% if submission.document_type == "WORD"  %}
+                    <div id="loading-container">
+                        <!-- Loading animation here (e.g., spinner, loading text) -->
+                        <div class="spinner-border" role="status">
+                          <span class="visually-hidden">Loading...</span>
+                        </div>
+                      </div>
+                      
+                      <iframe width="100%" height="600px" src="https://docs.google.com/gview?url={{ submission.attachment.url }}&embedded=true" id="doc-viewer"></iframe>
+                      
+                      <style>
+                        /* CSS for the loading container */
+                        #loading-container {
+                          display: flex;
+                          justify-content: center;
+                          align-items: center;
+                          width: 100%;
+                          height: 600px;
+                          background-color: #f5f5f5; /* Background color for the loading container */
+                        }
+                      
+                        /* CSS for the loading spinner */
+                        .spinner-border {
+                          width: 3rem; /* Adjust the size of the spinner as needed */
+                          height: 3rem; /* Adjust the size of the spinner as needed */
+                        }
+                      
+                        /* CSS to initially hide the loading container */
+                        #loading-container {
+                          display: none;
+                        }
+                      </style>
+                      
+                      <script>
+                        // JavaScript to show the loading container when the iframe is loading
+                        const iframe = document.getElementById('doc-viewer');
+                        const loadingContainer = document.getElementById('loading-container');
+                      
+                        iframe.addEventListener('load', function() {
+                          // Hide the loading container when the iframe has loaded
+                          loadingContainer.style.display = 'none';
+                        });
+                      </script>
+                      
+                    {% else %}
+                    
+                    <embed src="{{ submission.attachment.url }}" type="application/pdf" width="100%" height="600px" />
+                    <a href="{{ submission.attachment.url }}" download="{{ submission.auto_id }}" target="_blank">
+                        <button class="cssbuttons-io-button">
+                            <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 0h24v24H0z" fill="none"></path>
+                                <path
+                                    d="M1 14.5a6.496 6.496 0 0 1 3.064-5.519 8.001 8.001 0 0 1 15.872 0 6.5 6.5 0 0 1-2.936 12L7 21c-3.356-.274-6-3.078-6-6.5zm15.848 4.487a4.5 4.5 0 0 0 2.03-8.309l-.807-.503-.12-.942a6.001 6.001 0 0 0-11.903 0l-.12.942-.805.503a4.5 4.5 0 0 0 2.029 8.309l.173.013h9.35l.173-.013zM13 12h3l-4 5-4-5h3V8h2v4z"
+                                    fill="currentColor"></path>
+                            </svg>
+                            <span>Download</span>
+                        </button>
+                    </a>
+                {% endif %}
+                </div>
+
+                <div class="col-md-4">
+                    <h3 class="my-3">{{ submission.auto_id }}</h3>
+                    <p><strong>Name:</strong> {{ submission.name }}</p>
+                    <p><strong>Phone Number:</strong> {{ submission.phone_number }}</p>
+                    <p><strong>State of Origin:</strong> {{ submission.state_of_origin }}</p>
+                    <p><strong>Age Range:</strong> {{ submission.age_range }}</p>
+                    <p><strong>Educational Institution:</strong> {{ submission.educational_institution }}</p>
+                    <p><strong>Current Level:</strong> {{ submission.current_level }}</p>
+                    <p><strong>Submission Date:</strong> {{ submission.date }}</p><br>
+                    <p><strong>Total Grade:</strong> {{ submission.grade }}</p>
+<br>
+                    <button id="openGradingForm" class="grade-button">
+
+                        <svg height="24" width="24" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M716.582 133c212.77 0 385.853 173.192 385.853 385.852v110.244c0 116.747-53.138 220.266-135.38 291.042 59.642 7.276 119.284 16.316 178.154 28.774 166.798 35.057 287.956 194.139 287.956 378.245v211.888l-22.49 16.426c-120.937 88.746-367.22 232.393-694.974 232.393-17.309 0-34.837-.44-52.587-1.212-288.727-13.56-507.781-133.174-640.735-231.18L0 1538.934v-211.888c0-184.107 121.268-343.188 288.287-378.245 58.539-12.348 117.85-21.829 177.381-28.994-82.02-70.887-134.938-174.185-134.938-290.712V518.852C330.73 306.192 503.813 133 716.582 133Zm405.917 923.73c-149.931-31.64-304.162-45.751-455.416-41.782-119.173 2.976-239.008 17.087-356.086 41.672-116.307 24.474-200.754 138.245-200.754 270.427v155.774c122.15 85.439 312.54 182.122 558.053 193.698 303.39 14.552 532.035-108.59 654.625-193.808v-155.554c0-132.292-84.336-245.953-200.422-270.427ZM625.08 518.852c-38.695 0-55.342 15.324-82.903 40.68-23.702 21.938-53.909 49.61-101.203 62.398v7.166c0 152.025 123.583 275.608 275.608 275.608 152.026 0 275.61-123.583 275.61-275.608v-45.2c-29.326 23.261-68.242 45.2-127.883 45.2-81.69 0-125.568-40.35-157.648-69.785-27.23-25.245-43.657-40.459-81.58-40.459ZM1842.058 307.66 1920 385.6l-431.713 431.713-235.37-235.37 77.942-77.942 157.428 157.428 353.77-353.771ZM716.582 243.243c-145.3 0-263.481 113.441-273.624 256.206 7.717-5.953 15.545-12.678 24.474-20.946 32.081-29.435 75.958-69.894 157.648-69.894 80.92 0 124.575 40.238 156.326 69.563 27.56 25.356 44.207 40.68 82.903 40.68 37.593 0 53.798-15.103 80.918-40.129 11.025-10.142 22.82-20.946 36.491-30.978-31.64-117.41-137.915-204.502-265.136-204.502Z"
+                                fill-rule="evenodd" fill="white" />
+                        </svg>
+
+
+                        <span>Grade User</span>
+                    </button>
+
+                    <p id="gradingMessage"></p>
+
+                    <!-- The pop-up form -->
+                    <div id="gradingFormContainer" class="grading-form-container">
+                        <div class="grading-form">
+                            <span class="close-button" id="closeGradingForm">&times;</span>
+                            <h2>Grading Form</h2>
+                            <form id="gradingForm" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="auto_id" id="auto_id" value="{{submission.auto_id}}">
+                                <label for="grader">Grader:</label>
+                                <input type="text" id="grader" name="grader" value="{{ request.access_name }}" readonly
+                                    required>
+
+                                <label for="grade">Grade: <i>1-100</i></label>
+                                <input type="number" id="grade" name="grade" required>
+
+                                <label for="feedback">Feedback:</label>
+                                <textarea id="feedback" name="feedback" rows="4" required></textarea>
+
+                                <div class="button-container">
+                                    <button type="submit" class="cssbuttons-io-button">
+                                        <svg height="24" width="24" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0 0h24v24H0z" fill="none"></path>
+                                            <path
+                                                d="M1 14.5a6.496 6.496 0 0 1 3.064-5.519 8.001 8.001 0 0 1 15.872 0 6.5 6.5 0 0 1-2.936 12L7 21c-3.356-.274-6-3.078-6-6.5zm15.848 4.487a4.5 4.5 0 0 0 2.03-8.309l-.807-.503-.12-.942a6.001 6.001 0 0 0-11.903 0l-.12.942-.805.503a4.5 4.5 0 0 0 2.029 8.309l.173.013h9.35l.173-.013zM13 12h3l-4 5-4-5h3V8h2v4z"
+                                                fill="currentColor"></path>
+                                        </svg>
+                                        <span>Submit Grade</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <h1>Grading Information</h1>
+            <br>
+            <div class="messages-box">
+                <div class="list-group rounded-0">
+                    {% if grading %}
+                    {% for grade in grading %}
+                    <a href="#" class="list-group-item list-group-item-action list-group-item-light rounded-0">
+                        <div class="media"><img src="https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small/user-profile-icon-free-vector.jpg" alt="user"
+                                width="50" class="rounded-circle">
+                            <div class="media-body ml-4">
+                                <div class="d-flex align-items-center justify-content-between mb-1">
+                                    <h6 class="mb-0">{{ grade.grader }}</h6><small
+                                        class="small font-weight-bold">{{ grade.grade }}</small>
+                                </div>
+                                <p class="font-italic text-muted mb-0 text-small">{{ grade.feedback }}</p>
+                            </div>
+                        </div>
+                    </a>
+                    {% endfor %}
+                    {% else %}
+                    <li>No grading information available.</li>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+        </div>
+        <style>
+            /* CSS (styles.css) */
+
+
+            .container1 {
+                max-width: 800px;
+                margin: 20px auto;
+                padding: 20px;
+                background-color: #fff;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            h1 {
+                background-color: #007BFF;
+                color: #fff;
+                padding: 20px;
+                text-align: center;
+                margin: 0;
+            }
+
+            h2 {
+                color: #007BFF;
+            }
+
+            .submission-details,
+            .grading-details {
+                margin-top: 20px;
+                padding: 10px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                background-color: #fff;
+            }
+
+            p {
+                margin: 0;
+                line-height: 1.5;
+            }
+
+            a {
+                text-decoration: none;
+                color: #007BFF;
+            }
+
+            a:hover {
+                text-decoration: underline;
+            }
+
+            .cssbuttons-io-button {
+                display: flex;
+                align-items: center;
+                font-family: inherit;
+                font-weight: 500;
+                font-size: 17px;
+                padding: 0.8em 1.5em 0.8em 1.2em;
+                color: white;
+                background: #ad5389;
+                background: linear-gradient(0deg, rgba(77, 54, 208, 1) 0%, rgba(132, 116, 254, 1) 100%);
+                border: none;
+                box-shadow: 0 0.7em 1.5em -0.5em #4d36d0be;
+                letter-spacing: 0.05em;
+                border-radius: 20em;
+            }
+
+            .cssbuttons-io-button svg {
+                margin-right: 8px;
+            }
+
+            .cssbuttons-io-button:hover {
+                box-shadow: 0 0.5em 1.5em -0.5em #4d36d0be;
+            }
+
+            .cssbuttons-io-button:active {
+                box-shadow: 0 0.3em 1em -0.5em #4d36d0be;
+            }
+
+            ol {
+                padding-left: 50px;
+            }
+        </style>
+
+        <style>
+            /* Styling for the pop-up form container */
+            .grading-form-container {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                /* Semi-transparent background */
+                z-index: 1000;
+                justify-content: center;
+                align-items: center;
+            }
+
+            /* Styling for the pop-up form itself */
+            /* Styling for the pop-up form itself */
+            .grading-form {
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+                width: 80%;
+                /* Adjust the width as needed */
+                position: relative;
+            }
+
+            /* Styling for form labels */
+            .grading-form label {
+                display: block;
+                margin-bottom: 10px;
+                font-weight: bold;
+            }
+
+            /* Styling for form input fields */
+            .grading-form input[type="text"],
+            .grading-form textarea,
+            .grading-form input[type="number"] {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 15px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                font-size: 16px;
+            }
+
+            /* Styling for form input fields on focus */
+            .grading-form input[type="text"]:focus,
+            .grading-form textarea:focus {
+                border-color: #007BFF;
+                /* Highlight when focused */
+                outline: none;
+            }
+
+            /* Styling for the submit button */
+            .grading-form button[type="submit"] {
+                display: block;
+                width: 100%;
+                padding: 10px;
+                background-color: #007BFF;
+                color: #fff;
+                border: none;
+                border-radius: 4px;
+                font-size: 18px;
+                cursor: pointer;
+            }
+
+            /* Styling for the submit button on hover */
+            .grading-form button[type="submit"]:hover {
+                background-color: #0056b3;
+                /* Darker shade on hover */
+            }
+
+            /* Styling for the close button */
+            .close-button {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                cursor: pointer;
+                font-size: 24px;
+                color: #888;
+            }
+
+            /* Styling for the close button on hover */
+            .close-button:hover {
+                color: #333;
+            }
+
+            /* Other form styling remains the same */
+        </style>
+
+        <script>
+            // JavaScript to show and hide the pop-up form
+            document.getElementById("openGradingForm").addEventListener("click", function () {
+                // Check if a cookie exists for this entry
+                const autoId = document.getElementById("auto_id").value;
+                if (hasGradedCookie(autoId)) {
+                    // If the judge has already graded this entry, show a message
+                    document.getElementById("gradingMessage").textContent = "This entry has already been graded.";
+                } else {
+                    // If the judge has not graded this entry, show the grading form
+                    document.getElementById("gradingFormContainer").style.display = "flex";
+                }
+            });
+
+            document.getElementById("closeGradingForm").addEventListener("click", function () {
+                document.getElementById("gradingFormContainer").style.display = "none";
+            });
+
+            // Function to check if a judge has graded the entry based on a cookie
+            function hasGradedCookie(autoId) {
+                const cookieName = `graded_${autoId}`;
+                const gradedCookie = getCookie(cookieName);
+                return gradedCookie !== null && gradedCookie === "true";
+            }
+
+            // Submit the form using Ajax
+            document.getElementById("gradingForm").addEventListener("submit", function (e) {
+                e.preventDefault(); // Prevent the default form submission behavior
+
+                // Collect form data
+                const formData = new FormData(this);
+
+                // You can add additional data if needed
+                // formData.append("additionalKey", "additionalValue");
+
+                // Perform the Ajax request
+                fetch("{% url 'grade_submission' %}", {
+                    method: "POST",
+                    body: formData,
+                    headers: {
+                        "X-CSRFToken": getCookie("csrftoken"), // Ensure you have a function to get the CSRF token
+                    },
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        // Handle the response from the server
+                        if (data.success) {
+                            // If grading was successful, set a cookie to indicate that the entry has been graded
+                            const autoId = document.getElementById("auto_id").value;
+                            setGradedCookie(autoId);
+                            // Close the modal
+                            document.getElementById("gradingFormContainer").style.display = "none";
+                            // Show a success message
+                            alert("Grading submitted successfully");
+                        } else {
+                            // If grading failed, display an error message
+                            alert("Grading submission failed. Please try again.");
+                        }
+                    })
+                    .catch((error) => {
+                        console.error("Error:", error);
+                        alert("An error occurred while submitting the grading.");
+                    });
+            });
+
+            // Function to set a cookie to indicate that the judge has graded the entry
+            function setGradedCookie(autoId) {
+                const cookieName = `graded_${autoId}`;
+                document.cookie = `${cookieName}=true; path=/`;
+            }
+            // Function to get the CSRF token from cookies
+            function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie !== "") {
+                    var cookies = document.cookie.split(";");
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = cookies[i].trim();
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) === name + "=") {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+        </script>
+        <style>
+            #gradingMessage {
+                text-align: center;
+                margin-top: 10px;
+                color: #FF5733;
+                /* Red color for the message */
+            }
+
+            /* Style the grade-button */
+            .grade-button {
+                display: flex;
+                align-items: center;
+                font-family: inherit;
+                font-weight: 500;
+                font-size: 17px;
+                padding: 0.8em 1.5em 0.8em 1.2em;
+                color: white;
+                background: #ad5389;
+                background: linear-gradient(0deg, rgba(77, 54, 208, 1) 0%, rgba(132, 116, 254, 1) 100%);
+                border: none;
+                box-shadow: 0 0.7em 1.5em -0.5em #4d36d0be;
+                letter-spacing: 0.05em;
+                border-radius: 20em;
+            }
+
+            .grade-button svg {
+                margin-right: 8px;
+            }
+
+            .grade-button:hover {
+                box-shadow: 0 0.5em 1.5em -0.5em #4d36d0be;
+            }
+
+            .grade-button:active {
+                box-shadow: 0 0.3em 1em -0.5em #4d36d0be;
+            }
+        </style>
+        {% if request.user.is_authenticated and request.user.id == 1 %}
+        <div id="add-judge-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="close-modal">&times;</span>
+                <h2>Add Judge</h2>
+                <form id="add-judge-form">
+                    {% csrf_token %}
+                    <label for="judge-name">Name:</label>
+                    <input type="text" id="judge-name" name="name" required>
+                    <br>
+                    <label for="judge-email-phone">Email or Phone Number:</label>
+                    <input type="text" id="judge-email-phone" name="email_or_phone" required>
+                    <br>
+                    <button type="submit">Add Judge</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Rest of your HTML content here -->
+        <style>
+            /* Style for the pop-up modal */
+            .modal {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.7);
+            }
+
+            .modal-content {
+                background-color: #fff;
+                margin: 15% auto;
+                padding: 20px;
+                width: 80%;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+                border-radius: 5px;
+                position: relative;
+            }
+
+            .close {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                font-size: 20px;
+                cursor: pointer;
+            }
+
+            /* Style for the form elements */
+            form {
+                text-align: center;
+            }
+
+            label {
+                font-weight: bold;
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            input[type="text"] {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 15px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+
+            button[type="submit"] {
+                background-color: #007BFF;
+                color: #fff;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+            button[type="submit"]:hover {
+                background-color: #0056b3;
+            }
+
+            /* Add some spacing and styling to your "Add Judge" button */
+            .create-button {
+                /* Your existing button styles go here */
+            }
+        </style>
+        <script>
+            // Function to show the pop-up form
+            function showAddJudgeModal() {
+                const modal = document.getElementById("add-judge-modal");
+                modal.style.display = "block";
+            }
+
+            // Function to hide the pop-up form
+            function hideAddJudgeModal() {
+                const modal = document.getElementById("add-judge-modal");
+                modal.style.display = "none";
+            }
+
+            // Close the pop-up form when the close button is clicked
+            const closeButton = document.getElementById("close-modal");
+            closeButton.addEventListener("click", hideAddJudgeModal);
+
+            // Show the pop-up form when the "Add Judge" button is clicked
+            const addButton = document.querySelector(".create-button");
+            addButton.addEventListener("click", showAddJudgeModal);
+
+            // Handle the form submission using AJAX
+            const addJudgeForm = document.getElementById("add-judge-form");
+            addJudgeForm.addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                const formData = new FormData(addJudgeForm);
+
+                // Send an AJAX request to the Django view
+                fetch("{% url 'add_judge' %}", {
+                    method: "POST",
+                    body: formData,
+                    headers: {
+                        "X-CSRFToken": "{{ csrf_token }}",
+                    },
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Handle the response, e.g., show a success message
+                        alert(data.message);
+
+                        // Hide the pop-up form
+                        hideAddJudgeModal();
+
+                        // Optionally, you can reload the page or update the judge list here
+                    })
+                    .catch(error => {
+                        console.error("Error:", error);
+                    });
+            });
+        </script>
+
+        </div>
+        <style>
+            .create-button {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                padding: 10px 20px;
+                /* Adjust the padding as needed */
+                font-size: 16px;
+                /* Adjust the font size as needed */
+                background-color: #007BFF;
+                /* Background color of the button */
+                color: #fff;
+                /* Text color */
+                border: none;
+                border-radius: 5px;
+                /* Rounded corners */
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+                /* Smooth hover effect */
+
+                /* Optional: Add box shadow for a raised button effect */
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            }
+
+            .create-button:hover {
+                background-color: #0056b3;
+                /* Darker shade on hover */
+            }
+
+            .create-button svg {
+                width: 24px;
+                /* Adjust the size of the SVG icon */
+                height: 24px;
+                margin-right: 8px;
+                /* Spacing between the icon and text */
+            }
+        </style>
+        {% endif %}
+        </div>
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+
+</html>
